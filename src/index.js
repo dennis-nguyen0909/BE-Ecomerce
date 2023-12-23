@@ -39,13 +39,13 @@ mongoose.connect(process.env.MONGODB, {
     useUnifiedTopology: true
 })
     .then(() => {
-        console.log("Connect database successfully!!")
+        // console.log("Connect database successfully!!")
     })
     .catch((err) => {
-        console.log("Connect database error!!", err)
-        console.log("MONGO!!", port)
+        // console.log("Connect database error!!", err)
+        // console.log("MONGO!!", port)
 
     });
 app.listen(port, () => {
-    console.log(`Server is running on ${port}`);
+    // console.log(`Server is running on ${port}`);
 })
