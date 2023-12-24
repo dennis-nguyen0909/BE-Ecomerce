@@ -34,10 +34,7 @@ ProductRouter(app);
 Cloudinary(app);
 OrderRouter(app);
 PaymentRouter(app);
-mongoose.connect(process.env.MONGODB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+mongoose.connect(process.env.MONGODB)
     .then(() => {
         // console.log("Connect database successfully!!")
     })
