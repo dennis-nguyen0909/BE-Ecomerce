@@ -59,8 +59,8 @@ const loginUser = async (req, res) => {
         res.cookie('refresh_token', refresh_token, {
             httpOnly: true, // giúp ta chỉ lấy đc cookie qua http thôi 
             secure: false, // bảo mật phía client
-            sameSite: 'strict',
-            path: '/'
+            // sameSite: 'strict',
+            // path: '/'
         })
         return res.status(200).json({
             message: newData, refresh_token
@@ -167,7 +167,7 @@ const getDetailUser = async (req, res) => {
 // }
 const refreshToken = async (req, res) => {
     try {
-        const token = req.headers.token.split(' ')[1];
+        const token = req.body.headers.token.split(' ')[1];
         // const token = req.cookie.refresh_token
         if (!token) {
             return res.status(200).json({
@@ -176,11 +176,10 @@ const refreshToken = async (req, res) => {
             })
         }
         const response = await JWTservice.refreshTokenService(token);
-        // localStorage.setItem('access_token', response.access_token)
         return res.status(200).json(response)
     } catch (error) {
         return res.status(400).json({
-            status: "err",
+            status: "err1",
             message: error.message
         })
     }

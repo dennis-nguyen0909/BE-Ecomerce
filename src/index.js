@@ -26,7 +26,7 @@ app.use(express.json({ limit: '100mb' })) // Tăng giới hạn lên 100MB cho J
 app.use(express.urlencoded({ limit: '100mb' })) // Tăng giới hạn lên 100MB cho URL encoded data
 // Bodyparser dat trước router
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }))
+// app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 
 
