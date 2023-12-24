@@ -37,11 +37,13 @@ OrderRouter(app);
 PaymentRouter(app);
 mongoose.connect(process.env.MONGODB)
     .then(() => {
-
+        console.log("Connect database successfully!!")
     })
     .catch((err) => {
-
+        console.log("Connect database error!!", err)
+        console.log("MONGO!!", port)
 
     });
 app.listen(port, () => {
+    // console.log(`Server is running on ${port}`);
 })
