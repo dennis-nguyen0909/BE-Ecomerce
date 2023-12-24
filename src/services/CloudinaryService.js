@@ -8,15 +8,7 @@ cloudinary.config({
 
 const deleteCloudinaryImage = (publicId) => {
     return new Promise((resolve, reject) => {
-        // cloudinary.uploader.destroy(publicId, (error, result) => {
-        //     if (error) {
-        //         console.error('Error deleting image:', error);
-        //         reject(error);
-        //     } else {
-        //         console.log('Image deleted successfully:', result);
-        //         resolve(result);
-        //     }
-        // });
+       
     });
 };
 

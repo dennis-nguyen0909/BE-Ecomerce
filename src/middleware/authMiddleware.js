@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken')
 require('dotenv').config();
 const authMiddleware = (req, res, next) => {
-    // console.log("req.headersss", req.headers.cookie.split('=')[1]);
     const token = req.headers.token.split(' ')[1];
     jwt.verify(token, process.env.ACCESS_TOKEN, (err, user) => {
         if (err) {
