@@ -306,12 +306,12 @@ const getAllTypeProduct = () => {
 const getAllDiscount = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const allDiscount = await Product.distinct('discount');
+            const productsWithDiscount = await Product.find({ discount: { $exists: true } });
             resolve({
                 status: 'Ok',
                 EC: 1,
                 message: 'Get all discount successfully!!',
-                data: allDiscount
+                data: productsWithDiscount
             })
         } catch (error) {
             reject(error)
