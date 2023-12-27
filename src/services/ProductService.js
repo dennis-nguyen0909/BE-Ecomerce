@@ -186,18 +186,39 @@ const getAllProduct = (limit, page, sort, filter) => {
         }
     })
 }
-const getAllProduct2 = () => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            const product = await Product.find();
-            resolve({
-                status: "Get product ok",
-                data: product
-            })
-        } catch (error) {
-            reject(error)
+const getAllProduct2 = async (limit, page, sort, filter) => {
+    try {
+        const totalProduct = await Product.countDocuments();
+        let query = {};
+        let regexFilter = null;
+
+        if (filter) {
+            const label = filter[0];
+            const filterValue = filter[1];
+            regexFilter = { [label]: { $regex: new RegExp(filterValue, 'i') } };
+            query = regexFilter;
         }
-    })
+
+        const allProduct = await Product.find(query)
+            .limit(limit)
+            .skip(page * limit)
+            .sort({ createdAt: -1, updatedAt: -1, ...sort });
+
+        const total = regexFilter
+            ? await Product.countDocuments(regexFilter)
+            : totalProduct;
+
+        return {
+            status: 'OK',
+            message: 'Success',
+            data: allProduct,
+            total: total,
+            pageCurrent: Number(page + 1),
+            totalPage: Math.ceil(total / limit),
+        };
+    } catch (error) {
+        throw error;
+    }
 }
 // const getAllProduct = (limit, page, sort, filter) => {
 //     return new Promise(async (resolve, reject) => {
