@@ -303,8 +303,23 @@ const getAllTypeProduct = () => {
         }
     })
 }
+const getAllDiscount = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const allDiscount = await Product.distinct('discount');
+            resolve({
+                status: 'Ok',
+                EC: 1,
+                message: 'Get all discount successfully!!',
+                data: allDiscount
+            })
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
 module.exports = {
     createProduct, updateProduct, deleteProduct,
     getDetailProduct, getAllProduct, getAllProduct2,
-    deleteManyProduct, getAllTypeProduct
+    deleteManyProduct, getAllTypeProduct, getAllDiscount
 }  
