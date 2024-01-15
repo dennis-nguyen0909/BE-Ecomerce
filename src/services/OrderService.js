@@ -251,28 +251,22 @@ const getAllOrderDetails = (id) => {
 const confirmOrder = (orderId) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const checkOrder = await User.findOne({
-                _id: orderId
-            })
-            if (checkOrder === null) {
+            const order = await Order.find({
+                user: id
+            }).sort({ createdAt: -1, updatedAt: -1 })
+            if (order === null) {
                 resolve({
-                    message: "User not defined!!",
-                    status: "OK"
+                    status: 'ERR',
+                    message: 'The order is not defined'
                 })
             }
-            // const order = Order.findByIdAndUpdate(orderId, { status: 'Confirmed' }, { new: true });
-            // if (!order) {
-            //     resolve({
-            //         status: 'Error',
-            //         message: 'Đơn hàng không tồn tại',
-            //     })
-            // }
+
             resolve({
                 status: 'OK',
                 message: 'SUCESSS',
-                data: orderId
+                data: order
             })
-        } catch (error) {
+        } catch (e) {
             reject(e)
         }
     })
