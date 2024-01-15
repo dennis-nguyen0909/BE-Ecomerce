@@ -248,6 +248,26 @@ const getAllOrderDetails = (id) => {
         }
     })
 }
+const confirmOrder = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const order = Order.findByIdAndUpdate(id, { status: 'Confirmed' }, { new: true });
+            if (!order) {
+                resolve({
+                    status: 'Error',
+                    message: 'Đơn hàng không tồn tại',
+                })
+            }
+            resolve({
+                status: 'OK',
+                message: 'SUCESSS',
+                data: order
+            })
+        } catch (error) {
+            reject(e)
+        }
+    })
+}
 module.exports = {
-    createOrder, getAllOder, getDetailOrder, cancelOrderProduct, deleteManyOrder, getAllType, getAllOrderDetails
+    createOrder, getAllOder, getDetailOrder, cancelOrderProduct, deleteManyOrder, getAllType, getAllOrderDetails, confirmOrder
 }  

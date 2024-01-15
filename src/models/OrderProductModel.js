@@ -34,6 +34,11 @@ const orderSchema = new mongoose.Schema({
         ref: "User",
         require: true
     },
+    status: {
+        type: String,
+        enum: ['Pending', 'Confirmed', 'Cancelled', 'Delivered'],
+        default: 'Pending',
+    },
 
     isPaid: { type: Boolean, default: false },
     paidAt: { type: Date },
