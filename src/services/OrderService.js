@@ -260,17 +260,17 @@ const confirmOrder = (orderId) => {
                     status: "OK"
                 })
             }
-            const order = Order.findByIdAndUpdate(orderId, { status: 'Confirmed' }, { new: true });
-            if (!order) {
-                resolve({
-                    status: 'Error',
-                    message: 'Đơn hàng không tồn tại',
-                })
-            }
+            // const order = Order.findByIdAndUpdate(orderId, { status: 'Confirmed' }, { new: true });
+            // if (!order) {
+            //     resolve({
+            //         status: 'Error',
+            //         message: 'Đơn hàng không tồn tại',
+            //     })
+            // }
             resolve({
                 status: 'OK',
                 message: 'SUCESSS',
-                data: order
+                data: orderId
             })
         } catch (error) {
             reject(e)
