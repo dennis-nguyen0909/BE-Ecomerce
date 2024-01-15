@@ -248,10 +248,19 @@ const getAllOrderDetails = (id) => {
         }
     })
 }
-const confirmOrder = (id) => {
+const confirmOrder = (orderId) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const order = Order.findByIdAndUpdate(id, { status: 'Confirmed' }, { new: true });
+            const checkOrder = await User.findOne({
+                _id: orderId
+            })
+            if (checkOrder === null) {
+                resolve({
+                    message: "User not defined!!",
+                    status: "OK"
+                })
+            }
+            const order = Order.findByIdAndUpdate(orderId, { status: 'Confirmed' }, { new: true });
             if (!order) {
                 resolve({
                     status: 'Error',
