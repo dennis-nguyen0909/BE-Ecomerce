@@ -140,8 +140,7 @@ const confirmOrder = async (req, res) => {
     } catch (error) {
         return res.status(404).json({
             status: 'Error',
-            message: 'Loi tu services',
-            error
+            message: error
         })
     }
 }

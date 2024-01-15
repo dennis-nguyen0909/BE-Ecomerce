@@ -252,7 +252,7 @@ const confirmOrder = (orderId) => {
     return new Promise(async (resolve, reject) => {
         try {
             const order = await Order.find({
-                user: id
+                user: orderId
             }).sort({ createdAt: -1, updatedAt: -1 })
             if (order === null) {
                 resolve({
