@@ -13,7 +13,7 @@ const Cloudinary = require('./routes/Cloudinary')
 const cloudinary = require('cloudinary');
 const OrderRouter = require('./routes/OrderRouter');
 const PaymentRouter = require('./routes/PaymentRouter');
-
+const SearchRouter = require('./routes/SearchRouter')
 cloudinary.config({
     cloud_name: 'dxtz2g7ga',
     api_key: '953156321132996',
@@ -35,6 +35,7 @@ ProductRouter(app);
 Cloudinary(app);
 OrderRouter(app);
 PaymentRouter(app);
+SearchRouter(app);
 mongoose.connect(process.env.MONGODB)
     .then(() => {
         console.log("Connect database successfully!!")

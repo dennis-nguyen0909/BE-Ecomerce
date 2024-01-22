@@ -248,19 +248,19 @@ const getAllOrderDetails = (id) => {
         }
     })
 }
-const confirmOrder = (orderId) => {
+const confirmOrder = (orderId, statusOr, statusDelivery) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const order = await Order.find({
-                user: orderId
-            }).sort({ createdAt: -1, updatedAt: -1 })
+
+            const check = statusDelivery === "true" ? true : false
+            const order = await Order.findByIdAndUpdate(orderId, { status: statusOr, isDelivered: check }, { new: true })
             if (order === null) {
                 resolve({
                     status: 'ERR',
                     message: 'The order is not defined'
                 })
             }
-
+            Email
             resolve({
                 status: 'OK',
                 message: 'SUCESSS',

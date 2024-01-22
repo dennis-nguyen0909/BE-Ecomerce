@@ -129,13 +129,15 @@ const deleteManyOrder = async (req, res) => {
 const confirmOrder = async (req, res) => {
     try {
         const orderId = req.params.id
-        if (!id) {
+        const statusOr = req.body.statusOrder
+        const statusDelivery = req.body.statusDelivered
+        if (!orderId) {
             return res.status(404).json({
                 status: 'Error',
                 message: 'Khong co id'
             })
         }
-        const response = await OrderService.confirmOrder(orderId);
+        const response = await OrderService.confirmOrder(orderId, statusOr, statusDelivery);
         return res.status(200).json(response)
     } catch (error) {
         return res.status(404).json({
