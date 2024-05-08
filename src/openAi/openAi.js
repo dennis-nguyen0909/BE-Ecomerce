@@ -17,6 +17,7 @@ async function nodeNLP(message) {
   const dock = await dockStart({ use: ["Basic"] });
   const nlp = dock.get("nlp");
   nlp.addLanguage("en");
+  nlp.addLanguage("vi");
   // Adds the utterances and intents for the NLP
   nlp.addDocument("en", "Xin chào !", "greetings.hello");
   nlp.addDocument("en", "Chào bạn ", "greetings.hello");

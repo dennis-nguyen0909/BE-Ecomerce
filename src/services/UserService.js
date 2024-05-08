@@ -192,7 +192,7 @@ const chatGPT = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const res = await nodeNLP(data);
-      console.log(res);
+      console.log("res", res);
       if (res === undefined) {
         const result = await questionAI(data);
         console.log("result", result);
