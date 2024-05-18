@@ -14,6 +14,7 @@ const cloudinary = require("cloudinary");
 const OrderRouter = require("./routes/OrderRouter");
 const PaymentRouter = require("./routes/PaymentRouter");
 const SearchRouter = require("./routes/SearchRouter");
+const ShopRouter = require("./routes/ShopRouter");
 const main = require("./openAi/openAi");
 const training = require("./openAi/openAi");
 cloudinary.config({
@@ -37,6 +38,7 @@ Cloudinary(app);
 OrderRouter(app);
 PaymentRouter(app);
 SearchRouter(app);
+ShopRouter(app);
 mongoose
   .connect(process.env.MONGODB)
   .then(() => {
