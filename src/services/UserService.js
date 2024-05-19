@@ -72,12 +72,14 @@ const loginUser = (userLogin) => {
       const access_token = await generalAccessToken({
         id: checkUserExist.id,
         isAdmin: checkUserExist.isAdmin,
+        isEmployee: checkUserExist.isEmployee,
       });
 
       //#5 tạo refresh_token để khi access_token hết hạn thì sẽ lấy refresh_token
       const refresh_token = await generalRefreshToken({
         id: checkUserExist.id,
         isAdmin: checkUserExist.isAdmin,
+        isEmployee: checkUserExist.isEmployee,
       });
 
       resolve({
@@ -99,6 +101,7 @@ const updateUser = (id, data) => {
       const checkUser = await User.findOne({
         _id: id,
       });
+      console.log("data", data);
       if (checkUser === null) {
         resolve({
           message: "User not defined!!",
@@ -141,7 +144,7 @@ const deleteUser = (id) => {
 const getAllUser = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      const getUser = await User.find();
+      const getUser = await User.find().sort({ createdAt: -1 });
       resolve({
         status: "Ok",
         message: "Get All User Success!!",
